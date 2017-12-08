@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>
+</title>
+<link rel="shortcut icon" href="">
+
+<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyA2BDtth7Hcm9B2dUvM_Q24tUAKfXT620Q",
+    authDomain: "decenttracker.firebaseapp.com",
+    databaseURL: "https://decenttracker.firebaseio.com",
+    projectId: "decenttracker",
+    storageBucket: "",
+    messagingSenderId: "249994981516"
+  };
+  firebase.initializeApp(config);
+</script>
+<!-- AngularJS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<!-- AngularFire -->
+<script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js"></script>
+<!-- Your Javascript -->
+<script src="javascripts/script.js"></script>
+
+<script type="text/javascript"></script>
+
+</head>
+
+<body ng-app="myApp" ng-controller="gameController">
+  <button ng-click="signIn()">Github Signin</button>
+  <button ng-click="test()">Github Signout</button>
+</body>
+
+</html>
