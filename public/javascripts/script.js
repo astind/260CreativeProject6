@@ -40,27 +40,63 @@ myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth",
    };
 
    $scope.upLifePlayer = function(player) {
-
+     var key = $scope.players.$keyAt(player);
+     var obj = $scope.players.$getRecord(key);
+     console.log(obj);
+     obj.health = obj.health + 1;
+     $scope.palyers.$save(obj).then(function() {
+        console.log("saved upLife Player to database");
+     });
    };
 
    $scope.downLifePlayer = function(player) {
-
+     var key = $scope.players.$keyAt(player);
+     var obj = $scope.players.$getRecord(key);
+     console.log(obj);
+     obj.health = obj.health - 1;
+     $scope.palyers.$save(obj).then(function() {
+        console.log("saved downLife Player to database");
+     });
    };
 
    $scope.upFatigue = function(player) {
-
+     var key = $scope.players.$keyAt(player);
+     var obj = $scope.players.$getRecord(key);
+     console.log(obj);
+     obj.fatigue = obj.fatigue + 1;
+     $scope.palyers.$save(obj).then(function() {
+        console.log("saved upFatigue to database");
+     });
    };
 
    $scope.downFatigue = function(player) {
-
+     var key = $scope.players.$keyAt(player);
+     var obj = $scope.players.$getRecord(key);
+     console.log(obj);
+     obj.fatigue = obj.fatigue - 1;
+     $scope.palyers.$save(obj).then(function() {
+        console.log("saved downFatigue to database");
+     });
    };
 
    $scope.useFeat = function(player) {
-
+     var key = $scope.players.$keyAt(player);
+     var obj = $scope.players.$getRecord(key);
+     console.log(obj);
+     obj.featUsed = true;
+     $scope.palyers.$save(obj).then(function() {
+        console.log("saved useFeat to database");
+     });
    };
 
    $scope.gainFeat = function(player) {
-
+     var key = $scope.players.$keyAt(player);
+     var obj = $scope.players.$getRecord(key);
+     console.log(obj);
+     obj.featUsed = false;
+     $scope.palyers.$save(obj).then(function() {
+        console.log("saved gainFeat to database");
+     });
    };
 
    $scope.addPlayer = function(player) {
@@ -120,7 +156,7 @@ myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth",
      console.log(obj);
      obj.health = obj.health - 1;
      $scope.monsters.$save(obj).then(function() {
-        console.log("saved upLife Monster to database");
+        console.log("saved downLife Monster to database");
      });
    };
 
