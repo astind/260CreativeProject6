@@ -29,20 +29,86 @@
 </head>
 
 <body ng-app="myApp" ng-controller="gameController">
-  <button ng-click="signIn()">Github Signin</button>
-  <button ng-click="signOut()">Github Signout</button>
 
-  <form ng-submit="addMonster(monster)">
-    Name: <input type="text" ng-model="monster.name"></input><br>
-    Image: <input type="text" ng-model="monster.image"></input><br>
-    Health: <input type="number" ng-model="monster.health"></input>
-    <button type="submit">Add Monster </button>
-  </form >
+  <div class="header">
+    <h1>Descent: Journeys in the Dark</h1>
+    <h2>Game Tracker</h2>
+    <p>Keep track of your Quests, Characters, and Monsters</p>  
+  </div>
 
-  <div ng-repeat='mon in monsters'>
-    {{mon.name}} - {{mon.health}}
-    <button ng-click="removeMonster(mon)">Delete</button>
-    <button ng-click="upLifeMonster(mon)">Up Health</button>
+  <div class="signIn">
+    <h2>Sign in with Github to Start your Adventure</h2>
+    <button ng-if="loggedIn == false" ng-click="signIn()">Github Signin</button>
+    <button ng-if="loggedIn" ng-click="signOut()">Github Signout</button>
+  </div>
+
+  <div class="game" ng-if="loggedIn">
+
+    <div class="gameinfo">
+      <h2> Welcome: {{displayName}} </h2>
+      
+    </div>
+    
+    <button id="playerButton" ng-click="displayAddPlayer()">Add a Player</button>
+    <div class="playerAdd" ng-if="playerButton">
+      <form ng-submit="addPlayer(player)">
+	Name: <input type="text" ng-model="player.name"></input><br>
+        Image: <input type="text" ng-model="player.image"></input><br>
+	Health: <input type="number" ng-model="player.health"></input><br>
+	Fatigue: <input type="number" ng-model="player.fatigue"></input><br>
+	Strength: <input type="text" ng-model="player.strength"></input><br>
+	Intelligence: <input type="text" ng-model="player.intelligence"></input><br>
+	Willpower: <input type="text" ng-model="player.willpower"></input><br>
+	Awareness: <input type="text" ng-model="player.awareness"></input><br>
+        <button type="submit">Add player</button>
+      </form>
+    </div>
+
+    <div class="players">
+      <h2> Characters: </h2>
+      <div class="playerInfo" ng-repeat="play in players">
+        <img src="{{play.image}}"><br>
+        {{play.name}} 
+        <button ng-click="removePlayer(play)">Delete</button> <br>
+        Health: {{play.health}} 
+        <button ng-click="upLifePlayer(play)">Up Health</button>
+        <button ng-click="downLifePlayer(play)">Down Health</button> <br>
+        Fatigue: {{play.fatigue}} 
+        <button ng-click="upFatigue(play)">Up Fatigue</button>
+        <button ng-click="downFatigue(play)">Down Fatigue</button><br>
+        Strength: {{play.strength}} <br>
+        Intelligence: {{play.intelligence}} <br>
+        Willpower: {{play.willpower}} <br>
+        Awareness: {{play.awareness}} <br>
+        <button ng-click="useFeat(play)">Use Feat</button>
+        <button ng-click="gainFeat(play)">Gain Feat</button> <br>
+      </div>
+    </div>
+
+    <hr>
+
+    <button id="monsterButton" ng-click="displayAddMonster()">Add a Monster</button>
+    <div class="monsterAdd" ng-if="monsterButton">
+      <form ng-submit="addMonster(monster)">
+        Name: <input type="text" ng-model="monster.name"></input><br>
+        Image: <input type="text" ng-model="monster.image"></input><br>
+        Health: <input type="number" ng-model="monster.health"></input>
+        <button type="submit">Add Monster </button>
+      </form >
+    </div>
+    
+    <div class="monsters">
+      <h2>Monsters: </h2>
+      <div class="monsterInfo" ng-repeat='mon in monsters'>
+	<img src="{{mon.image}}"> <br>
+        {{mon.name}}
+        <button ng-click="removeMonster(mon)">Delete</button> <br>
+        Health: {{mon.health}}
+        <button ng-click="upLifeMonster(mon)">Up Health</button>
+        <button ng-click="downLifeMonster(mon)">Down Health </button><br>
+      </div>
+    </div>
+
   </div>
 
 </body>

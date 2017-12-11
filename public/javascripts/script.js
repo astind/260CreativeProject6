@@ -5,17 +5,19 @@ myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth",
 
    var auth = $firebaseAuth();
    var user = '';
-   var userStatus = "Not Signed In";
+   $scope.loggedIn = false;
+   $scope.displayName = '';
+   $scope.playerButton = false;
+   $scope.monsterButton = false;
 
    $scope.signIn = function() {
      console.log("in signIn");
      auth.$signInWithPopup("github").then(function(firebaseUser) {
-       console.log(firebaseUser.user);
        user = firebaseUser.user.uid;
-       console.log("signed in as: ", user);
-       userStatus = "Signed in as: "+ firebaseUser.user.displayName;
-       console.log(userStatus);
-
+       console.log("User uuid:  ", user);
+       console.log("Signed in as: "+ firebaseUser.user.displayName);
+       $scope.loggedIn = true;
+       $scope.displayName = firebaseUser.user.displayName;
        var ref = firebase.database().ref().child("games").child(user);
 
        $scope.data = $firebaseArray(ref.child("data"));
@@ -39,12 +41,20 @@ myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth",
      });
    };
 
+   $scope.displayAddPlayer = function() {
+     $scope.playerButton = true;
+   };
+
+   $scope.displayAddMonster = function() {
+     $scope.monsterButton = true;
+   };
+
    $scope.upLifePlayer = function(player) {
      var key = $scope.players.$keyAt(player);
      var obj = $scope.players.$getRecord(key);
      console.log(obj);
      obj.health = obj.health + 1;
-     $scope.palyers.$save(obj).then(function() {
+     $scope.players.$save(obj).then(function() {
         console.log("saved upLife Player to database");
      });
    };
@@ -54,7 +64,7 @@ myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth",
      var obj = $scope.players.$getRecord(key);
      console.log(obj);
      obj.health = obj.health - 1;
-     $scope.palyers.$save(obj).then(function() {
+     $scope.players.$save(obj).then(function() {
         console.log("saved downLife Player to database");
      });
    };
@@ -64,7 +74,7 @@ myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth",
      var obj = $scope.players.$getRecord(key);
      console.log(obj);
      obj.fatigue = obj.fatigue + 1;
-     $scope.palyers.$save(obj).then(function() {
+     $scope.players.$save(obj).then(function() {
         console.log("saved upFatigue to database");
      });
    };
@@ -74,7 +84,7 @@ myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth",
      var obj = $scope.players.$getRecord(key);
      console.log(obj);
      obj.fatigue = obj.fatigue - 1;
-     $scope.palyers.$save(obj).then(function() {
+     $scope.players.$save(obj).then(function() {
         console.log("saved downFatigue to database");
      });
    };
@@ -84,7 +94,7 @@ myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth",
      var obj = $scope.players.$getRecord(key);
      console.log(obj);
      obj.featUsed = true;
-     $scope.palyers.$save(obj).then(function() {
+     $scope.players.$save(obj).then(function() {
         console.log("saved useFeat to database");
      });
    };
@@ -94,7 +104,7 @@ myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth",
      var obj = $scope.players.$getRecord(key);
      console.log(obj);
      obj.featUsed = false;
-     $scope.palyers.$save(obj).then(function() {
+     $scope.players.$save(obj).then(function() {
         console.log("saved gainFeat to database");
      });
    };
@@ -114,6 +124,7 @@ myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth",
      };
      console.log(newplayer);
      $scope.players.$add(newplayer);
+     $scope.playerButton = false;
    };
 
    $scope.removePlayer = function(player) {
@@ -130,9 +141,7 @@ myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth",
      };
      console.log(newMonster);
      $scope.monsters.$add(newMonster);
-     $scope.monster.name ='';
-     $scope.monster.image = '';
-     $scope.monster.health = '';
+     $scope.monsterButton = false;
    };
 
    $scope.removeMonster = function(monster) {
