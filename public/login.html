@@ -1,8 +1,10 @@
 <html>
 <head>
 <title>
+Descent Game Tracker
 </title>
 <link rel="shortcut icon" href="">
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css"/>
 
 <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
 <script>
@@ -31,22 +33,35 @@
 <body ng-app="myApp" ng-controller="gameController">
 
   <div class="header">
-    <h1>Descent: Journeys in the Dark</h1>
-    <h2>Game Tracker</h2>
-    <p>Keep track of your Quests, Characters, and Monsters</p>  
+    <img src="http://d2etracker.com/img/logo_only.png">
+    <h3>Keep track of your Quests, Characters, and Monsters</h3>  
   </div>
 
   <div class="signIn">
-    <h2>Sign in with Github to Start your Adventure</h2>
-    <button ng-if="loggedIn == false" ng-click="signIn()">Github Signin</button>
-    <button ng-if="loggedIn" ng-click="signOut()">Github Signout</button>
+    <h2 ng-if="loggedIn == false">Sign in with Github to Start your Adventure</h2>
+    <h2 ng-if="loggedIn">Sign Out to Save your Adventure</h2>
+    <button ng-if="loggedIn == false" ng-click="signIn()">Sign In</button>
+    <button ng-if="loggedIn" ng-click="signOut()">Sign Out</button>
   </div>
 
   <div class="game" ng-if="loggedIn">
 
     <div class="gameinfo">
       <h2> Welcome: {{displayName}} </h2>
-      
+      <div class="quest">
+        <h3> Current Quest: {{data.quest}} </h3>
+        <h3> Party Life Points: {{data.lifepoints}} </h3>
+        <img width="50px" src='http://www.pngmart.com/files/3/Up-Arrow-PNG-Picture.png' ng-click="upPartyPoints()">
+        <img width="50px" src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-512.png' ng-click="downPartyPoints()">
+      </div>
+      <button ng-click="displayQuest()">Start/Edit Quest</button>
+      <div class="questinfo" ng-if="questButton">
+        <form ng-submit="setQuest(quest)">
+	  Current Quest: <input type="text" ng-model="quest.currentquest"></input><br>
+	  Party Life Points: <input type="number" ng-model="quest.lifepoints"></input><br>
+          <button type="submit">Set Quest</button>
+        </form>
+      </div> 
     </div>
     
     <button id="playerButton" ng-click="displayAddPlayer()">Add a Player</button>
@@ -71,11 +86,11 @@
         {{play.name}} 
         <button ng-click="removePlayer(play)">Delete</button> <br>
         Health: {{play.health}} 
-        <button ng-click="upLifePlayer(play)">Up Health</button>
-        <button ng-click="downLifePlayer(play)">Down Health</button> <br>
+        <img width="50px" src='http://www.pngmart.com/files/3/Up-Arrow-PNG-Picture.png' ng-click="upLifePlayer(play)">
+        <img width="50px" src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-512.png" ng-click="downLifePlayer(play)"> <br>
         Fatigue: {{play.fatigue}} 
-        <button ng-click="upFatigue(play)">Up Fatigue</button>
-        <button ng-click="downFatigue(play)">Down Fatigue</button><br>
+        <img width="50px" src='http://www.pngmart.com/files/3/Up-Arrow-PNG-Picture.png' ng-click="upFatigue(play)">
+        <img width="50px" src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-512.png' ng-click="downFatigue(play)"><br>
         Strength: {{play.strength}} <br>
         Intelligence: {{play.intelligence}} <br>
         Willpower: {{play.willpower}} <br>
@@ -84,8 +99,6 @@
         <button ng-click="gainFeat(play)">Gain Feat</button> <br>
       </div>
     </div>
-
-    <hr>
 
     <button id="monsterButton" ng-click="displayAddMonster()">Add a Monster</button>
     <div class="monsterAdd" ng-if="monsterButton">
@@ -102,10 +115,10 @@
       <div class="monsterInfo" ng-repeat='mon in monsters'>
 	<img src="{{mon.image}}"> <br>
         {{mon.name}}
-        <button ng-click="removeMonster(mon)">Delete</button> <br>
+        <button ng-click="removeMonster(mon)">Remove monster </button><br>
         Health: {{mon.health}}
-        <button ng-click="upLifeMonster(mon)">Up Health</button>
-        <button ng-click="downLifeMonster(mon)">Down Health </button><br>
+        <img width="50px" src='http://www.pngmart.com/files/3/Up-Arrow-PNG-Picture.png' ng-click="upLifeMonster(mon)">
+        <img width="50px" src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-512.png' ng-click="downLifeMonster(mon)"><br>
       </div>
     </div>
 

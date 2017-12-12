@@ -1,7 +1,7 @@
 var myApp = angular.module("myApp",["firebase"]);
 
-myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth",
- function($scope, $firebaseArray, $firebaseAuth) {
+myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth","$firebaseObject",
+ function($scope, $firebaseArray, $firebaseAuth, $firebaseObject) {
 
    var auth = $firebaseAuth();
    var user = '';
@@ -9,6 +9,7 @@ myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth",
    $scope.displayName = '';
    $scope.playerButton = false;
    $scope.monsterButton = false;
+   $scope.questButton = false;
 
    $scope.signIn = function() {
      console.log("in signIn");
@@ -20,7 +21,7 @@ myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth",
        $scope.displayName = firebaseUser.user.displayName;
        var ref = firebase.database().ref().child("games").child(user);
 
-       $scope.data = $firebaseArray(ref.child("data"));
+       $scope.data = $firebaseObject(ref.child("data"));
        $scope.players = $firebaseArray(ref.child("players"));
        $scope.monsters = $firebaseArray(ref.child("monsters"));
 
@@ -39,6 +40,33 @@ myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth",
      }).catch(function(error) {
 	console.log("Signing out failed: ", error);
      });
+   };
+   
+   $scope.upPartyPoints = function() {
+     $scope.data.lifepoints += 1;
+     $scope.data.$save().then(function() {
+	console.log("saved up life points");
+     });
+   };
+
+   $scope.downPartyPoints = function() {
+     $scope.data.lifepoints -= 1;
+     $scope.data.$save().then(function() {
+        console.log("saved down life points");
+     });
+   };
+
+   $scope.setQuest = function(quest) {
+     $scope.data.quest = quest.currentquest;
+     $scope.data.lifepoints = quest.lifepoints;
+     $scope.data.$save().then(function() {
+       console.log("quest saved: ");
+       $scope.questButton = false;
+     });
+   };
+
+   $scope.displayQuest = function() {
+     $scope.questButton = true;
    };
 
    $scope.displayAddPlayer = function() {

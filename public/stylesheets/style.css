@@ -1,8 +1,49 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url('http://www.myfreetextures.com/wp-content/uploads/2011/06/another-rough-old-and-worn-parchment-paper.jpg');
+  background-size: cover;
 }
 
 a {
   color: #00B7FF;
+}
+
+.header {
+ text-align: center;
+}
+
+.header h3 {
+  position: relative;
+  bottom: 55px;
+}
+
+.signIn  {
+  position: relative;
+  text-align: center;
+  bottom: 55px;
+}
+
+.signIn button {
+  border-radius: 8px;
+  border: 2px solid brown;
+  background-color: white;
+  padding: 10px 24px;
+  font-size: 20px;
+  transition-duration: 0.4s;
+}
+
+.signIn button:hover {
+  background-color: brown;
+  color: white;
+}
+
+.gameinfo {
+  text-align: center; 
+  position: relative;
+  bottom: 55px; 
+}
+
+.quest button {
+
 }
