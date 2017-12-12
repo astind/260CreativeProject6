@@ -1,6 +1,6 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 25px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-image: url('http://www.myfreetextures.com/wp-content/uploads/2011/06/another-rough-old-and-worn-parchment-paper.jpg');
   background-size: cover;
 }
@@ -31,6 +31,7 @@ a {
   padding: 10px 24px;
   font-size: 20px;
   transition-duration: 0.4s;
+  margin: 5px;
 }
 
 .signIn button:hover {
@@ -44,6 +45,111 @@ a {
   bottom: 55px; 
 }
 
-.quest button {
+.gameinfo button {
+  border-radius: 8px;
+  border: 2px solid brown;
+  background-color: white;
+  padding: 10px 24px;
+  font-size: 20px;
+  transition-duration: 0.4s;
+  margin: 5px;
+}
+
+.gameinfo button:hover {
+  background-color: brown;
+  color: white;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+
+.column button {
+  border-radius: 8px;
+  border: 2px solid brown;
+  background-color: white;
+  padding: 10px 24px;
+  font-size: 20px;
+  transition-duration: 0.4s;
+  margin: 5px;
+}
+
+.column button:hover {
+  background-color: brown;
+  color: white;
 
 }
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.playerAdd {
+  border: 2px solid black;
+}
+
+.players {
+  text-align:center;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.playerInfo {
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 8px;
+  background-color: peru;
+  padding: 10px;
+}
+
+.playerInfo img#arrow {
+  position: relative;
+  top: 15px;
+}
+
+.playerInfo img#pic {
+  border-radius: 100%;
+  border: solid 1px black;
+  width: 150px;
+} 
+
+.playerInfo button {
+  margin-bottom: 5px;
+}
+
+.monsterAdd {
+  border: 2px solid black;
+}
+
+.monsters {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.monsterInfo {
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 8px;
+  background-color: DarkGrey;
+  padding: 10px;
+  margin: 5px;
+}
+
+.monsterInfo img#arrow {
+  position: relative;
+  top: 15px;
+}
+
+.monsterInfo img#pic {
+  border-radius: 100%;
+  border: solid 1px black;
+  width: 80px;
+}
+
+
+
+
