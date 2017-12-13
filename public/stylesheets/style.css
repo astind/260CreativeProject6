@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 10px;
   font: 25px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-image: url('http://www.myfreetextures.com/wp-content/uploads/2011/06/another-rough-old-and-worn-parchment-paper.jpg');
   background-size: cover;
@@ -7,6 +7,11 @@ body {
 
 a {
   color: #00B7FF;
+}
+
+h3 {
+  margin-top: 15px;
+  margin-bottom: 5px;
 }
 
 .header {
@@ -43,6 +48,8 @@ a {
   text-align: center; 
   position: relative;
   bottom: 55px; 
+  margin-left: 200px;
+  margin-right: 200px;
 }
 
 .gameinfo button {
@@ -52,12 +59,19 @@ a {
   padding: 10px 24px;
   font-size: 20px;
   transition-duration: 0.4s;
-  margin: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .gameinfo button:hover {
   background-color: brown;
   color: white;
+}
+
+.gameinfo form {
+  border: 2px solid black;
+  margin: 5px;
+  padding: 10px; 
 }
 
 .column {
@@ -90,12 +104,16 @@ a {
 
 .playerAdd {
   border: 2px solid black;
+  padding-top: 20px;
+  margin: 5px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .players {
   text-align:center;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 150px;
+  padding-right: 150px;
 }
 
 .playerInfo {
@@ -121,13 +139,22 @@ a {
   margin-bottom: 5px;
 }
 
+.playerInfo div#name {
+  position: relative;
+  top: 10px;
+}
+
 .monsterAdd {
   border: 2px solid black;
+  padding-top: 20px;
+  margin: 5px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .monsters {
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 150px;
+  padding-right: 150px;
 }
 
 .monsterInfo {
@@ -137,6 +164,11 @@ a {
   background-color: DarkGrey;
   padding: 10px;
   margin: 5px;
+}
+
+.monsterInfo div#name {
+  position: relative;
+  bottom: 20px;
 }
 
 .monsterInfo img#arrow {

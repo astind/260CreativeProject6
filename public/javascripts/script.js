@@ -36,7 +36,7 @@ myApp.controller("gameController", ["$scope", "$firebaseArray", "$firebaseAuth",
 	console.log("Sign Out Successful");
         userStatus = "Signed out";
         user = '';
-
+        $scope.loggedIn = false;
      }).catch(function(error) {
 	console.log("Signing out failed: ", error);
      });

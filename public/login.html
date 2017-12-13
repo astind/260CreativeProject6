@@ -51,11 +51,11 @@ Descent Game Tracker
       <div class="quest">
         <h3> Current Quest: {{data.quest}} </h3>
         <h3> Party Life Points: {{data.lifepoints}} </h3>
-        <img width="50px" src='http://www.pngmart.com/files/3/Up-Arrow-PNG-Picture.png' ng-click="upPartyPoints()">
-        <img width="50px" src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-512.png' ng-click="downPartyPoints()">
+        <img width="60px" src='http://www.pngmart.com/files/3/Up-Arrow-PNG-Picture.png' ng-click="upPartyPoints()">
+        <img width="60px" src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-512.png' ng-click="downPartyPoints()">
       </div>
       <button ng-click="displayQuest()">Create/Edit Quest</button>
-      <div class="questinfo" ng-if="questButton">
+      <div class="questinfo" ng-if="questButton  == true && loggedIn == true">
         <form ng-submit="setQuest(quest)">
 	  Current Quest: <input type="text" ng-model="quest.currentquest"></input><br>
 	  Party Life Points: <input type="number" ng-model="quest.lifepoints"></input><br>
@@ -85,19 +85,20 @@ Descent Game Tracker
         <h2> Characters: </h2>
         <div class="playerInfo" ng-repeat="play in players">
           <img id="pic" src="{{play.image}}"><br>
-          {{play.name}} 
-          <br>
+          <h3>{{play.name}} </h3>
+<div id="name">
           Health: {{play.health}} 
-          <img id="arrow" width="50px" src='http://www.pngmart.com/files/3/Up-Arrow-PNG-Picture.png' ng-click="upLifePlayer(play)">
-          <img id="arrow" width="50px" src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-512.png" ng-click="downLifePlayer(play)"> <br>
+          <img id="arrow" width="40px" src='http://www.pngmart.com/files/3/Up-Arrow-PNG-Picture.png' ng-click="upLifePlayer(play)">
+          <img id="arrow" width="40px" src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-512.png" ng-click="downLifePlayer(play)">
+</div>
           Fatigue: {{play.fatigue}} 
-          <img id="arrow" width="50px" src='http://www.pngmart.com/files/3/Up-Arrow-PNG-Picture.png' ng-click="upFatigue(play)">
-          <img id="arrow" width="50px" src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-512.png' ng-click="downFatigue(play)"><br>
+          <img id="arrow" width="40px" src='http://www.pngmart.com/files/3/Up-Arrow-PNG-Picture.png' ng-click="upFatigue(play)">
+          <img id="arrow" width="40px" src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-512.png' ng-click="downFatigue(play)"><br>
           Strength: {{play.strength}} <br>
           Intelligence: {{play.intelligence}} <br>
           Willpower: {{play.willpower}} <br>
           Awareness: {{play.awareness}} <br>
-          Heroic Feat: <p ng-if="play.featUsed == false"><strong>Available</strong></p><p ng-if="play.featUsed"><strong>Not Available</strong></p> 
+          Heroic Feat: <p ng-if="play.featUsed == false"><strong>Available</strong></p><p ng-if="play.featUsed"><strong>Not Available</strong></p>  
           <button ng-click="useFeat(play)">Use Feat</button>
           <button ng-click="gainFeat(play)">Gain Feat</button> <br>
           <button ng-click="removePlayer(play)">Delete</button> 
@@ -119,12 +120,13 @@ Descent Game Tracker
       <div class="monsters">
         <h2>Monsters: </h2>
         <div class="monsterInfo" ng-repeat='mon in monsters'>
-	  <img id="pic" src="{{mon.image}}"> <br>
-          {{mon.name}}
-          <br>
+	  <img id="pic" src="{{mon.image}}">
+          <h3>{{mon.name}}</h3>
+<div id="name">
           Health: {{mon.health}}
           <img id="arrow" width="50px" src='http://www.pngmart.com/files/3/Up-Arrow-PNG-Picture.png' ng-click="upLifeMonster(mon)">
-          <img id="arrow" width="50px" src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-512.png' ng-click="downLifeMonster(mon)"><br>
+          <img id="arrow" width="50px" src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-512.png' ng-click="downLifeMonster(mon)">
+</div>
           <button ng-click="removeMonster(mon)">Remove monster </button>
         </div>
       </div>
